@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!--                                                               -->
+    <!-- Consider inlining CSS to reduce the number of requested files -->
+    <!--                                                               -->
+    <title>IPlus-breadCrumbWidget</title>
+    
+    <style>
+        .breadcrumbWidget{
+            width : 80%;
+            margin : auto;
+            border-bottom : solid thin;
+            border-color : rgb(200,200,200);
+            height : 3em;
+            font-family: sans-serif;
+            vertical-align: center;
+            overflow : hidden;
+            line-height: 3em;
+            position : relative;
+        }
+        
+        .line {
+            margin-left: 2em;
+        }
+        
+        .right {
+            float : right;
+            width : 10em;
+            background-color: rgb(230,230,230);
+            text-align: center;
+            cursor:pointer;
+            margin-top : 1em;
+        }
+        
+        .right:hover {
+            background-color: rgb(180,180,180);
+            margin-top : 0em;
+        }
+    </style>
+  </head>
+
+  <!--                                           -->
+  <!-- The body can have arbitrary html, or      -->
+  <!-- you can leave the body empty if you want  -->
+  <!-- to create a completely dynamic UI.        -->
+  <!--                                           -->
+  <body>
+  
+  
+    <div id="breadCrumbWdiget" class="breadcrumbWidget">
+        <div class="line">Welcome on IPlus+ David
+        <div class="right">Logout</div>
+        </div>
+    </div>
+
+  </body>
+</html>

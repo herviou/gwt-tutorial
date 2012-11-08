@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!--                                                               -->
+    <!-- Consider inlining CSS to reduce the number of requested files -->
+    <!--                                                               -->
+    <title>IPlus-LoginWidget</title>
+    
+    <style>
+        .loginWidget{
+            width : 20%;
+            height : 100%;
+            color: rgb(20,20,20);
+            font-family: sans-serif;
+        }
+    
+        .title{
+            text-align: center;
+            font-size: 4em;
+            color: rgb(70,70,70);
+            font-weight: bold;
+        }
+    
+        .line {
+            overflow : hidden;
+            height: 2em;
+        }
+        .input{
+            color: rgb(150,150,150);
+            float : right;
+        }
+    
+    </style>
+  </head>
+
+  <!--                                           -->
+  <!-- The body can have arbitrary html, or      -->
+  <!-- you can leave the body empty if you want  -->
+  <!-- to create a completely dynamic UI.        -->
+  <!--                                           -->
+  <body>
+  
+  
+    <div id="LoginWidget" class="loginWidget">
+        <div class="title">IPlus+</div>
+        <div class="line">Login<input class="input" type="text" value="your@email.here"/></div>
+        <div class="line">Password<input class="input"  type="password" value="password"/></div>
+    </div>
+
+  </body>
+</html>

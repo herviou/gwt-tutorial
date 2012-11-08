@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!--                                                               -->
+    <!-- Consider inlining CSS to reduce the number of requested files -->
+    <!--                                                               -->
+    <title>IPlus-RegisterWidget</title>
+    
+    <style>
+        .registerWidget{
+            width : 50%;
+            height : 100%;
+            color: rgb(20,20,20);
+            font-family: sans-serif;
+        }
+    
+        .title{
+            text-align: center;
+            font-size: 2em;
+            color: rgb(70,70,70);
+            font-weight: bold;
+        }
+    
+        .line {
+            overflow : hidden;
+            height: 2em;
+            position : relative;
+            width : 100%;
+        }
+        
+        .leftPart {
+            position : absolute;
+        }
+        
+        .input{
+            position : absolute;
+            width : 15em;
+            left : 15em;
+            color: rgb(150,150,150);
+            float : right;
+        }
+    
+    </style>
+  </head>
+
+  <!--                                           -->
+  <!-- The body can have arbitrary html, or      -->
+  <!-- you can leave the body empty if you want  -->
+  <!-- to create a completely dynamic UI.        -->
+  <!--                                           -->
+  <body>
+  
+  
+    <div id="RegisterWidget" class="registerWidget">
+        <div class="title">Want to register on IPlus+ ? Let's GO!</div>
+        <div class="line"><div class="leftPart">Login</div><input class="input" type="text" value="your@email.here"/></div>
+        <div class="line"><div class="leftPart">Password</div><input class="input"  type="password" value="password"/></div>
+        <div class="line"><div class="leftPart">Password Again</div><input class="input"  type="password" value="text"/></div>
+        <div class="line"><div class="leftPart">firstName</div><input class="input"  type="text" value="your firstname"/></div>
+        <div class="line"><div class="leftPart">lastName</div><input class="input"  type="text" value="your lastname"/></div>
+    </div>
+
+  </body>
+</html>
