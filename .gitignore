@@ -5,3 +5,5 @@ test-classes/
 war/iPlus/
 dependencies/
 extras/
+war/WEB-INF/classes
+war/WEB-INF/deploy
