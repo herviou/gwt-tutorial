@@ -15,10 +15,10 @@
     
     <style>
         .registerWidget{
-            width : 50%;
-            height : 100%;
             color: rgb(20,20,20);
             font-family: sans-serif;
+            overflow : hidden;
+            
         }
     
         .title{
@@ -27,26 +27,38 @@
             color: rgb(70,70,70);
             font-weight: bold;
         }
-    
-        .line {
+        
+        .form {
             overflow : hidden;
-            height: 2em;
-            position : relative;
-            width : 100%;
         }
         
         .leftPart {
-            position : absolute;
+            float : left;
+            width : 50%;
+            line-height: 2em;
+        }
+        
+        .text {
+            text-align : right;
+            margin-right : 2em;            
+        }
+        
+        .rightPart {
+            float : left;
+            width : 50%;
+            line-height: 2em;
         }
         
         .input{
-            position : absolute;
             width : 15em;
-            left : 15em;
+            text-align : left;
             color: rgb(150,150,150);
-            float : right;
         }
     
+        .button {
+            text-align : center;
+            margin-top : 1em;
+        }
     </style>
   </head>
 
@@ -57,15 +69,30 @@
   <!--                                           -->
   <body>
   
-  
+    <div id="container" style="width:50%; margin : auto">
     <div id="RegisterWidget" class="registerWidget">
-        <div class="title">Want to register on IPlus+ ? Let's GO!</div>
-        <div class="line"><div class="leftPart">Login</div><input class="input" type="text" value="your@email.here"/></div>
-        <div class="line"><div class="leftPart">Password</div><input class="input"  type="password" value="password"/></div>
-        <div class="line"><div class="leftPart">Password Again</div><input class="input"  type="password" value="text"/></div>
-        <div class="line"><div class="leftPart">firstName</div><input class="input"  type="text" value="your firstname"/></div>
-        <div class="line"><div class="leftPart">lastName</div><input class="input"  type="text" value="your lastname"/></div>
+        <div class="title">Want to register on IPlus+</div>
+        <div class="title">Let's GO!</div>
+        
+        <div class="form">
+        <div class="leftPart">
+        <div class="text">Login</div>         
+        <div class="text">Password</div>      
+        <div class="text">Password Again</div>
+        <div class="text">firstName</div>     
+        <div class="text">lastName</div>      
+        </div>
+        
+        <div class="rightPart">
+        <input class="input" type="text" value="your@email.here"/>
+        <input class="input"  type="password" value="password"/>
+        <input class="input"  type="password" value="password"/>
+        <input class="input"  type="text" value="your firstname"/>
+        <input class="input"  type="text" value="your lastname"/>
+        </div>    
+        </div>
+        <div class="button"><button>Register Right Now !</button></div>
     </div>
-
+</div>
   </body>
 </html>
