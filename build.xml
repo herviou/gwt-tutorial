@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="fr.dhu.gwt.tp" default="build" basedir=".">
   <!-- Arguments to gwtc and devmode targets -->
-  <property name="gwt.args" value="" />
+  <property name="gwt.args" value="-soyc" />
 
   <!-- Configure path to GWT SDK -->
-  <property name="gwt.sdk" location="/opt/eclipse-packdev/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201208080121-rel-r42/gwt-2.4.0" />
+  <property name="gwt.sdk" location="dependencies" />
 
   <path id="project.class.path">
     <pathelement location="war/WEB-INF/classes"/>
@@ -42,7 +42,7 @@
       <arg value="war"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg line="${gwt.args}"/>
-      <arg value="fr.dhu.gwt.tp"/>
+      <arg value="fr.dhu.gwt.tp.iPlus"/>
     </java>
   </target>
 
@@ -142,7 +142,14 @@ Test targets suppressed because -junit argument was not specified when running w
 
   <target name="clean" description="Cleans this project">
     <delete dir="war/WEB-INF/classes" failonerror="false" />
-    <delete dir="war/iplus" failonerror="false" />
+    <delete dir="war/iPlus" failonerror="false" />
+  	<delete dir="gwt-unitCache" failonerror="false" />
+  	<delete dir="extras" failonerror="false" />
+  	<delete dir="IPlusDBtest" failonerror="false" />
   </target>
+	
+	 <target name="install" description="Cleans this project">
+	    <copyfile src="war/WEB-INF/lib/gwt-servlet.jar" dest="dependencies/gwt-servlet.jar"/>
+	  </target>
 
 </project>
