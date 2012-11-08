@@ -1,0 +1,2 @@
+serviceClass: fr.dhu.gwt.tp.client.GreetingService
+path: 36A44F54FA1D2F06CD82AA132CECAA6A.gwt.rpc
