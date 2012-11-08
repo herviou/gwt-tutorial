@@ -1,0 +1,5 @@
+IPlusDBtest/
+derby.log
+gwt-unitCache/
+test-classes/
+war/WEB-INF/
