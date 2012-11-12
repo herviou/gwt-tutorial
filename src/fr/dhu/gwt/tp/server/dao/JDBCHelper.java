@@ -2,29 +2,31 @@ package fr.dhu.gwt.tp.server.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Database access helper (very simple, ie no connection pooling!)
+ * @author David.Herviou
+ *
+ */
 public class JDBCHelper {
 
-	/* the default framework is embedded */
+	// the default framework is embedded 
 	private static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
 	private static String protocol = "jdbc:derby:";
 
 	// package private visibility for test;
 	static String database = "IPlusDB";
 	static JDBCHelper instance = null;
+	static AtomicBoolean started = new AtomicBoolean(false);
 
+	/**
+	 * no body have to instanciate this class
+	 */
 	private JDBCHelper() {
-	}
-
-	@Override
-	protected void finalize() throws Throwable {
-		super.finalize();
-		stop();
 	}
 
 	public static JDBCHelper getInstance() {
@@ -45,7 +47,7 @@ public class JDBCHelper {
 	 * example, if we are in an embedded environment, we load Derby's embedded
 	 * Driver, <code>org.apache.derby.jdbc.EmbeddedDriver</code>.
 	 */
-	private static void loadDriver() {
+	private static synchronized void loadDriver() {
 		try {
 			Class.forName(driver).newInstance();
 			System.out.println("Loaded the appropriate driver");
@@ -64,7 +66,14 @@ public class JDBCHelper {
 		}
 	}
 
-	private void start() {
+	/**
+	 * create the needed table on started if they have to.
+	 */
+	private synchronized void start() {
+		if(started.get()) {
+			return ;
+		}
+		
 		Connection conn = null;
 		Statement s = null;
 		try {
@@ -77,18 +86,21 @@ public class JDBCHelper {
 
 			s = conn.createStatement();
 
-			s.execute("CREATE TABLE person(login varchar(255) NOT NULL, password varchar(255), data blob, primary key(login))");
-			System.out.println("Created table person");
+			s.execute("CREATE TABLE person(login varchar(255) NOT NULL," +
+					" password varchar(255) NOT NULL," +
+					" data blob," +
+					" primary key(login))");
 
 			s.close();
 			conn.commit();
+			started = new AtomicBoolean(true);
 		} catch (SQLException se) {
 			try {
 				conn.rollback();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				//here we are really bad
 			}
-			se.printStackTrace();
+			System.err.println("table is already created");
 		} finally {
 			try {
 				if (conn != null) {
@@ -96,12 +108,15 @@ public class JDBCHelper {
 					conn = null;
 				}
 			} catch (SQLException sqle) {
-				sqle.printStackTrace();
+				//here again we are really bad
 			}
 		}
 	}
 
-	private void stop() {
+	/**
+	 * stop the database. This has only to be called in a JDBCHelper lifecycle management
+	 */
+	public synchronized void stop() {
 		try {
 			// the shutdown=true attribute shuts down Derby
 			DriverManager.getConnection("jdbc:derby:;shutdown=true");

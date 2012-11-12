@@ -18,19 +18,21 @@ public class PersonDAOTest {
 		@Test
 		public void testAll() {
 			
-			String password = "password";
 			String login = "david.herviou@gmail.com-test";
 			Person p = new Person();
 			p.setLogin(login);
 			p.setFirstName("david");
 			p.setLastName("herviou");
 			
-			PersonDAO.getInstance().addPerson(p, password);
+			PersonDAO.getInstance().addPerson(p,"pa55w0rd");
 			
 			Person searched = PersonDAO.getInstance().searchPerson(login);
 			
 			System.err.println(p.getLogin()+" "+searched.getLogin());
 			Assert.assertEquals(p, searched);
-		}
-	
+			
+			
+			Assert.assertTrue(PersonDAO.getInstance().checkPassword(login, "pa55w0rd"));
+			Assert.assertFalse(PersonDAO.getInstance().checkPassword(login, "pa55w0rD"));
+		}	
 }

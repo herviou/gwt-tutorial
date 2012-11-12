@@ -1,0 +1,65 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	
+	<ui:with type="fr.dhu.gwt.tp.client.HistoryToken" field="historyToken"/>
+	<ui:with type="fr.dhu.gwt.tp.client.widget.LoginMessages" field="messages"/>
+	
+	<ui:style>
+		.loginWidget {
+			width: 30em;
+			height: 100%;
+			color: rgb(20, 20, 20);
+			font-family: sans-serif;
+			margin : auto;
+		}
+		
+		.title {
+			text-align: center;
+			font-size: 4em;
+			color: rgb(70, 70, 70);
+			font-weight: bold;
+		}
+		
+		.line {
+			position: relative;
+			overflow: hidden;
+			height: 2em;
+		}
+		
+		.input {
+			color: rgb(150, 150, 150);
+			float: right;
+		}
+		
+		.left {
+	       float : left;
+	   }
+		
+		.right {
+			float: right;
+		}
+	</ui:style>
+	
+	<g:HTMLPanel>
+		<div id="LoginWidget" class="{style.loginWidget}">
+			<div class="{style.title}">IPlus+</div>
+			
+			<div class="{style.line}"> 
+			 <g:Label text="{messages.login}" stylePrimaryName="{style.left}"/>
+		     <g:TextBox text="{messages.loginDefaultText}"  stylePrimaryName="{style.input}" ui:field="email"/>
+			</div>
+			
+			<div class="{style.line}">
+			 <g:Label text="{messages.password}" stylePrimaryName="{style.left}"/>
+             <g:PasswordTextBox text="{messages.password}"  stylePrimaryName="{style.input}" ui:field="password"/>
+            </div>
+			
+			<div class="{style.line}">
+			 <g:Hyperlink stylePrimaryName="{style.left}" targetHistoryToken="{historyToken.getTokRegister}" text="{messages.noAccount}"/>
+			 <g:Button ui:field="logIn" stylePrimaryName="{style.right}" text="{messages.logMeIn}"/>
+			</div>
+			
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

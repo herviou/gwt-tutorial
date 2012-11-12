@@ -1,13 +1,22 @@
 package fr.dhu.gwt.tp.shared.model;
 
-public class Person {
+import java.io.Serializable;
+
+/**
+ * An object that represents a Person
+ * @author David.Herviou
+ */
+public class Person implements Serializable{
+
+
+	private static final long serialVersionUID = 8659971200055945050L;
 
 	protected String firstName="";
 	
 	protected String lastName="";
 	
 	protected String login="";
-
+	
 	public String getFirstName() {
 		return firstName;
 	}

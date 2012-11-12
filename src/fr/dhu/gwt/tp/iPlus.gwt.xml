@@ -19,5 +19,7 @@
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
   <source path='shared'/>
-
+  
+  <extend-property name="locale" values="fr,en"/>
+  <set-property-fallback name="locale" value="fr"/>
 </module>

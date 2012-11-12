@@ -2,6 +2,13 @@
 
 
 /** Example rules used by the template application (remove for your app) */
+html body{
+	width : 80%;
+	margin : auto;
+	
+}
+
+
 h1 {
   font-size: 10em;
   font-weight: bold;

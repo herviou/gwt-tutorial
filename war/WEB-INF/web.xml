@@ -5,16 +5,26 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
+  
+  <servlet>
+    <servlet-name>BootStrap</servlet-name>
+    <servlet-class>fr.dhu.gwt.tp.server.servlet.BootStrap</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+
   <!-- Servlets -->
-  <!-- <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>fr.dhu.gwt.tp.server.GreetingServiceImpl</servlet-class>
+  <servlet>
+    <servlet-name>loginServlet</servlet-name>
+    <servlet-class>fr.dhu.gwt.tp.server.servlet.LoginServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/iPlus/greet</url-pattern>
-  </servlet-mapping>-->
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/iPlus/loginServices</url-pattern>
+  </servlet-mapping>
+  
+  
   
   <!-- Default page to serve -->
   <welcome-file-list>
