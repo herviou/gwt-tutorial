@@ -11,6 +11,7 @@
 			height: 100%;
 			color: rgb(20, 20, 20);
 			margin : auto;
+			overflow : visible;
 		}
 		
 		.title {
@@ -22,7 +23,6 @@
 		
 		.line {
 			position: relative;
-			overflow: hidden;
 			height: 2em;
 		}
 		
@@ -37,7 +37,21 @@
 		
 		.right {
 			float: right;
+			color : #06C;
+			cursor : pointer;
+			border : solid 1px #06C;
+			border-radius : 10px;
+			padding-left: 1em;
+			padding-right: 1em;
 		}
+		
+		.right:hover {
+	        background-color : #06C;
+	        color : white;
+            cursor : pointer;
+	    }
+		
+		
 	</ui:style>
 	
 	<g:HTMLPanel>
@@ -56,7 +70,7 @@
 			
 			<div class="{style.line}">
 			 <g:Hyperlink stylePrimaryName="{style.left}" targetHistoryToken="{historyToken.getTokRegister}" text="{messages.noAccount}"/>
-			 <g:Button ui:field="logIn" stylePrimaryName="{style.right}" text="{messages.logMeIn}"/>
+			 <g:Label ui:field="logIn" stylePrimaryName="{style.right}" text="{messages.logMeIn}"/>
 			</div>
 			
 		</div>

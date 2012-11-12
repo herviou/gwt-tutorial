@@ -23,9 +23,9 @@ public class LoginServices {
 
 		/**
 		 * Check if the person is connected
-		 * @return true if user is already connected
+		 * @return the person object if user is already connected
 		 */
-		public Boolean isConnected() throws LoginServicesException;
+		public Person isConnected() throws LoginServicesException;
 		
 		/**
 		 * Connect the given person (create a session with connected attribute)
@@ -63,7 +63,7 @@ public class LoginServices {
 	 */
 	public static interface IfaceAsync {
 
-		void isConnected(AsyncCallback<Boolean> callback);
+		void isConnected(AsyncCallback<Person> callback);
 
 		void connect(String login, String password, AsyncCallback<Person> callback);
 

@@ -21,27 +21,21 @@ public class LoginServlet extends RemoteServiceServlet implements LoginServices.
 
 	/**
 	 * Check if the person is connected
-	 * @return true if user is already connected
+	 * @return Person if user is already connected
 	 */
 	@Override
-	public Boolean isConnected() throws LoginServicesException {
+	public Person isConnected() throws LoginServicesException {
 		HttpSession session = getThreadLocalRequest().getSession();
 		if(session == null){
-			return false;
+			throw new LoginServicesException(LoginServicesException.CODE.NO_ACTIVE_SESSION);
 		}
 		
 		Object connected = session.getAttribute("connected");
 		if( connected == null ) {
-			return false;
+			throw new LoginServicesException(LoginServicesException.CODE.NO_ACTIVE_SESSION);
 		}
 		
-		boolean isConnected = (Boolean)connected;
-		
-		if (isConnected == true) {
-			return true;
-		}
-		
-		return false;
+		return (Person)connected;
 	}
 
 	/**
@@ -67,8 +61,8 @@ public class LoginServlet extends RemoteServiceServlet implements LoginServices.
 		if( PersonDAO.getInstance().checkPassword(login,password) ){
 			// if login/password OK then declare the connected status in session
 			//
-			HttpSession session = getThreadLocalRequest().getSession(true);
-			session.setAttribute("connected",true);
+			HttpSession session = getThreadLocalRequest().getSession();
+			session.setAttribute("connected",person);
 			return person;
 		} else {
 			throw new LoginServicesException(CODE.LOGIN_PASSWORD_FAILURE);

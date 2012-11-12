@@ -64,9 +64,6 @@ public class AppController implements ValueChangeHandler<String> {
 		} else {
 			flowPanel.clear();
 		}
-		
-		
 	}
-	
 		
 }

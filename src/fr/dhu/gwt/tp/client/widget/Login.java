@@ -2,6 +2,8 @@ package fr.dhu.gwt.tp.client.widget;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.regexp.shared.MatchResult;
@@ -12,8 +14,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -29,7 +31,7 @@ import fr.dhu.gwt.tp.shared.model.Person;
  *
  */
 public class Login extends Composite implements ValueChangeHandler<String> {
-
+	
 	/**
 	 * UIBinder generator
 	 */
@@ -49,7 +51,7 @@ public class Login extends Composite implements ValueChangeHandler<String> {
 	//UiField with which we interact
 	@UiField TextBox email;
 	@UiField PasswordTextBox password;
-	@UiField Button logIn;
+	@UiField Label logIn;
 	
 	/**
 	 * Build the widget and initiaze all its connection to events
@@ -89,24 +91,19 @@ public class Login extends Composite implements ValueChangeHandler<String> {
 	 * Here we check call backend to connect user
 	 */
 	@UiHandler("logIn")
-	public void logMeIn(ClickEvent evoent) {
-		ServicesFactory.getLoginServices().connect(
-					email.getText(), 
-					password.getText(),
-					new AsyncCallback<Person>() {
-						
-						@Override
-						public void onSuccess(Person person) {
-							connectSuccessfully(person);
-						}
-						
-						@Override
-						public void onFailure(Throwable caught) {
-							Window.alert(messages.loginPasswordFailure());
-						}
-					});
+	protected void logMeIn(ClickEvent evoent) {
+		logMeIn();
 	}
 	
+	/**
+	 * trigger when a key is up on password
+	 */
+	@UiHandler({"password"})
+	protected void onEnterPress(KeyUpEvent event) {
+		if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER ) {
+			logMeIn();
+		}
+	}
 	
 	/**
 	 * Actions triggered when the connection is successfull
@@ -123,4 +120,26 @@ public class Login extends Composite implements ValueChangeHandler<String> {
 		IPlus.getEventbus().fireEvent(event);
 	}
 	
+	
+	/**
+	 * Call the login services connect
+	 */
+	private void logMeIn() {
+		
+		ServicesFactory.getLoginServices().connect(
+				email.getText(), 
+				password.getText(),
+				new AsyncCallback<Person>() {
+					
+					@Override
+					public void onSuccess(Person person) {
+						connectSuccessfully(person);
+					}
+					
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(messages.loginPasswordFailure());
+					}
+				});
+	}
 }
