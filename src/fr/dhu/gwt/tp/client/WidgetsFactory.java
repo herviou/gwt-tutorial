@@ -1,8 +1,8 @@
 package fr.dhu.gwt.tp.client;
 
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import fr.dhu.gwt.tp.client.widget.BreadCrumb;
 import fr.dhu.gwt.tp.client.widget.Login;
 
 /**
@@ -25,7 +25,7 @@ public class WidgetsFactory {
 	 * @return the Login Widget
 	 */
 	public static Widget breadCrumbWidget() {
-		return new HTMLPanel("here the main space");
+		return new BreadCrumb();
 	}
 	
 }

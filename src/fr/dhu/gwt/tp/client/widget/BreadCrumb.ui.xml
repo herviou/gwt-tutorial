@@ -1,0 +1,48 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	
+	<ui:with type="fr.dhu.gwt.tp.client.widget.BreadCrumbMessages" field="messages"/>
+	
+	<ui:style field="style">
+		 .breadcrumbWidget{
+            border-bottom : solid thin;
+            border-color : rgb(200,200,200);
+            height : 3em;
+            vertical-align: center;
+            overflow : hidden;
+            line-height: 3em;
+            position : relative;
+        }
+        
+        
+        .left {
+	       position : absolute;
+	       left : 2em;
+	    }
+        
+        .right {
+            position : absolute;
+            right : 2em;
+            width : 10em;
+            background-color: rgb(230,230,230);
+            text-align: center;
+            cursor:pointer;
+            margin-top : 1em;
+            top : 0em;
+        }
+        
+        .right:hover {
+            background-color: rgb(180,180,180);
+        }
+	</ui:style>
+	
+	
+	<g:HTMLPanel>
+	    <div id="breadCrumbWdiget" class="{style.breadcrumbWidget}">
+            <div ui:field="username"  class="{style.left}" >Welcome on IPlus+ Username</div>
+            <g:Label ui:field="logout"  stylePrimaryName="{style.right}" text="{messages.logout}"/>
+        </div>
+	</g:HTMLPanel>
+	
+</ui:UiBinder> 

@@ -10,7 +10,6 @@
 			width: 30em;
 			height: 100%;
 			color: rgb(20, 20, 20);
-			font-family: sans-serif;
 			margin : auto;
 		}
 		

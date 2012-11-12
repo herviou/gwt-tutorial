@@ -55,7 +55,7 @@ public class AppController implements ValueChangeHandler<String> {
 	 */
 	@Override
 	public void onValueChange(ValueChangeEvent<String> event) {
-		if(event.getValue().startsWith("/login/")) {
+		if(event.getValue().startsWith("/login")) {
 			flowPanel.clear();
 			flowPanel.add(login);
 		} else if (event.getValue().startsWith("/mainspace")) {

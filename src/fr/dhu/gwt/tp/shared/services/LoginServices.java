@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import fr.dhu.gwt.tp.shared.model.Person;
 
 /**
- * Services for Login checks and 
+ * Services for Login and 
  * @author David.Herviou
  *
  */

@@ -2,6 +2,8 @@ package fr.dhu.gwt.tp.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -15,15 +17,24 @@ import fr.dhu.gwt.tp.shared.services.LoginServicesException;
 public class IPlus implements EntryPoint {
 
 	/**
+	 * The singleton event bus of the application
+	 */
+	private static final EventBus eventBus = new SimpleEventBus();
+
+	public static EventBus getEventbus() {
+		return eventBus;
+	}
+
+	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
 		
 		Person p = new Person();
-		p.setFirstName("user");
-		p.setLastName("tester");
-		p.setLogin("user.tester2@iplus.plus");
-		String password = "testerpassword";
+		p.setFirstName("David");
+		p.setLastName("Herviou");
+		p.setLogin("david.herviou@iplus.plus");
+		String password = "dhpassword";
 		
 		ServicesFactory.getLoginServices().register(p, password, new AsyncCallback<Person>() {
 			@Override
@@ -42,20 +53,8 @@ public class IPlus implements EntryPoint {
 			}
 		});
 		
-		
-//		ServicesFactory.getLoginServices().isConnected(new AsyncCallback<Boolean>() {
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				GWT.log("not logged in");
-//			}
-//		
-//			@Override
-//			public void onSuccess(Boolean result) {
-//				GWT.log("already login");
-//			}
-//		});
-		
-		
+		// create the application controller and start application UI
+		//
 		new AppController();
 		
 		History.fireCurrentHistoryState();

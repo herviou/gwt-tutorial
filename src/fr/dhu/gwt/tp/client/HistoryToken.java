@@ -10,7 +10,7 @@ public class HistoryToken {
 	/**
 	 * Token for login widget
 	 */
-	public static final String TOK_LOGIN = "/login/name=";
+	public static final String TOK_LOGIN = "/login";
 
 	/**
 	 * useful for UIBinder

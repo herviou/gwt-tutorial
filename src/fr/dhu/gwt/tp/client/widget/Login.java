@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import fr.dhu.gwt.tp.client.HistoryToken;
+import fr.dhu.gwt.tp.client.IPlus;
 import fr.dhu.gwt.tp.client.ServicesFactory;
 import fr.dhu.gwt.tp.shared.model.Person;
 
@@ -95,21 +96,31 @@ public class Login extends Composite implements ValueChangeHandler<String> {
 					new AsyncCallback<Person>() {
 						
 						@Override
-						public void onSuccess(Person result) {
-							if(result != null) {
-								History.newItem(HistoryToken.TOK_MAIN);
-							} else {
-								Window.alert(messages.loginPasswordFailure());
-							}
+						public void onSuccess(Person person) {
+							connectSuccessfully(person);
 						}
 						
 						@Override
 						public void onFailure(Throwable caught) {
 							Window.alert(messages.loginPasswordFailure());
-							
 						}
 					});
 	}
 	
+	
+	/**
+	 * Actions triggered when the connection is successfull
+	 */
+	private void connectSuccessfully(Person person) {
+		
+		// push a new history token
+		History.newItem(HistoryToken.TOK_MAIN);
+		
+		// fire an event for object interested in this event
+		//
+		LoginEvent.Event event = new LoginEvent.Event(Login.this, LoginEvent.Event.Action.CONNECTION_SUCCESSFULLY);
+		event.setConnectedPerson(person);
+		IPlus.getEventbus().fireEvent(event);
+	}
 	
 }

@@ -5,38 +5,7 @@
 html body{
 	width : 80%;
 	margin : auto;
-	
+	font-family : "Damion";
+	font-size : 1.2em;
 }
 
-
-h1 {
-  font-size: 10em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.sendButton {
-  display: block;
-  font-size: 16pt;
-}
-
-/** Most GWT widgets already have a style name defined */
-.gwt-DialogBox {
-  width: 400px;
-}
-
-.dialogVPanel {
-  margin: 5px;
-}
-
-.serverResponseLabelError {
-  color: red;
-}
-
-/** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-  margin: 15px 6px 6px;
-}
