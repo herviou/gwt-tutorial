@@ -30,7 +30,7 @@ import fr.dhu.gwt.tp.shared.model.Person;
  * @author David.Herviou
  *
  */
-public class Login extends Composite implements ValueChangeHandler<String> {
+public class Login extends Composite {
 	
 	/**
 	 * UIBinder generator
@@ -43,67 +43,13 @@ public class Login extends Composite implements ValueChangeHandler<String> {
 	interface LoginUiBinder extends UiBinder<Widget, Login> {}
 
 	/**
-	 * Internationalization of messages
-	 * Instantiated with UIBinder
-	 */
-	@UiField LoginMessages messages;
-
-	//UiField with which we interact
-	@UiField TextBox email;
-	@UiField PasswordTextBox password;
-	@UiField Label logIn;
-	
-	/**
 	 * Build the widget and initiaze all its connection to events
 	 */
 	public Login() {
 		initWidget(uiBinder.createAndBindUi(this));
-		History.addValueChangeHandler(this);
-	}
-
-	/**
-	 * This method is triggered each time the History token has changed
-	 */
-	@Override
-	public void onValueChange(ValueChangeEvent<String> event) {
-
-		// check if token is interresting for me
-		if(event.getValue().startsWith("/login/")) {
-			
-			// get the email if provided
-			//
-			RegExp exp = RegExp.compile("/login/(.+)");
-			MatchResult result = exp.exec(event.getValue());
-			
-			if(result!=null){
-				String tokEmail = result.getGroup(1);
-				email.setText(tokEmail);
-			} else{
-				// restore default 
-				email.setText("your@email.here");
-			}
-		}
 	}
 
 	
-	/**
-	 * Trigger when login button is pressed
-	 * Here we check call backend to connect user
-	 */
-	@UiHandler("logIn")
-	protected void logMeIn(ClickEvent evoent) {
-		logMeIn();
-	}
-	
-	/**
-	 * trigger when a key is up on password
-	 */
-	@UiHandler({"password"})
-	protected void onEnterPress(KeyUpEvent event) {
-		if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER ) {
-			logMeIn();
-		}
-	}
 	
 	/**
 	 * Actions triggered when the connection is successfull
@@ -125,21 +71,21 @@ public class Login extends Composite implements ValueChangeHandler<String> {
 	 * Call the login services connect
 	 */
 	private void logMeIn() {
-		
-		ServicesFactory.getLoginServices().connect(
-				email.getText(), 
-				password.getText(),
-				new AsyncCallback<Person>() {
-					
-					@Override
-					public void onSuccess(Person person) {
-						connectSuccessfully(person);
-					}
-					
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert(messages.loginPasswordFailure());
-					}
-				});
+//		
+//		ServicesFactory.getLoginServices().connect(
+//				email.getText(), 
+//				password.getText(),
+//				new AsyncCallback<Person>() {
+//					
+//					@Override
+//					public void onSuccess(Person person) {
+//						connectSuccessfully(person);
+//					}
+//					
+//					@Override
+//					public void onFailure(Throwable caught) {
+//						Window.alert(messages.loginPasswordFailure());
+//					}
+//				});
 	}
 }

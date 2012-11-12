@@ -6,38 +6,11 @@
 	<ui:with type="fr.dhu.gwt.tp.client.HistoryToken" field="historyToken"/>
 	
 	<ui:style field="style">
-		 .breadcrumbWidget{
-            border-bottom : solid thin;
-            border-color : rgb(200,200,200);
-            height : 2em;
-            vertical-align: center;
-            overflow : hidden;
-            line-height: 2em;
-            position : relative;
-        }
-        
-        
-        .left {
-	       position : absolute;
-	       left : 2em;
-	    }
-        
-        .right {
-            position : absolute;
-            right : 2em;
-            width : 7em;
-        }
-        
-        .right:VISITED {
-        }
 	</ui:style>
 	
 	
 	<g:HTMLPanel>
-	    <div id="breadCrumbWdiget" class="{style.breadcrumbWidget}">
-            <div ui:field="username"  class="{style.left}" />
-            <g:Hyperlink ui:field="logout" stylePrimaryName="{style.right}" targetHistoryToken="{historyToken.getTokLogin}" text="{messages.logout}"/>
-        </div>
+	   BreadCrumbWidget
 	</g:HTMLPanel>
 	
 </ui:UiBinder> 

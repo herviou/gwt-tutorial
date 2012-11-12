@@ -6,73 +6,9 @@
 	<ui:with type="fr.dhu.gwt.tp.client.widget.LoginMessages" field="messages"/>
 	
 	<ui:style>
-		.loginWidget {
-			width: 30em;
-			height: 100%;
-			color: rgb(20, 20, 20);
-			margin : auto;
-			overflow : visible;
-		}
-		
-		.title {
-			text-align: center;
-			font-size: 4em;
-			color: rgb(70, 70, 70);
-			font-weight: bold;
-		}
-		
-		.line {
-			position: relative;
-			height: 2em;
-		}
-		
-		.input {
-			color: rgb(150, 150, 150);
-			float: right;
-		}
-		
-		.left {
-	       float : left;
-	   }
-		
-		.right {
-			float: right;
-			color : #06C;
-			cursor : pointer;
-			border : solid 1px #06C;
-			border-radius : 10px;
-			padding-left: 1em;
-			padding-right: 1em;
-		}
-		
-		.right:hover {
-	        background-color : #06C;
-	        color : white;
-            cursor : pointer;
-	    }
-		
-		
 	</ui:style>
 	
 	<g:HTMLPanel>
-		<div id="LoginWidget" class="{style.loginWidget}">
-			<div class="{style.title}">IPlus+</div>
-			
-			<div class="{style.line}"> 
-			 <g:Label text="{messages.login}" stylePrimaryName="{style.left}"/>
-		     <g:TextBox text="{messages.loginDefaultText}"  stylePrimaryName="{style.input}" ui:field="email"/>
-			</div>
-			
-			<div class="{style.line}">
-			 <g:Label text="{messages.password}" stylePrimaryName="{style.left}"/>
-             <g:PasswordTextBox text="{messages.password}"  stylePrimaryName="{style.input}" ui:field="password"/>
-            </div>
-			
-			<div class="{style.line}">
-			 <g:Hyperlink stylePrimaryName="{style.left}" targetHistoryToken="{historyToken.getTokRegister}" text="{messages.noAccount}"/>
-			 <g:Label ui:field="logIn" stylePrimaryName="{style.right}" text="{messages.logMeIn}"/>
-			</div>
-			
-		</div>
+		LoginWidget
 	</g:HTMLPanel>
 </ui:UiBinder> 

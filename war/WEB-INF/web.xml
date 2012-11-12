@@ -12,7 +12,7 @@
 
 
 	<!-- Servlets -->
-	<servlet>
+	<!-- servlet>
 		<servlet-name>loginServlet</servlet-name>
 		<servlet-class>fr.dhu.gwt.tp.server.servlet.LoginServlet</servlet-class>
 	</servlet>
@@ -20,7 +20,7 @@
 	<servlet-mapping>
 		<servlet-name>loginServlet</servlet-name>
 		<url-pattern>/iPlus/loginServices</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping-->
 
 
 

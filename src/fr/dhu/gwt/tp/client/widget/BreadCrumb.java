@@ -23,7 +23,7 @@ import fr.dhu.gwt.tp.shared.model.Person;
  * @author David.Herviou
  *
  */
-public class BreadCrumb extends Composite implements LoginEvent.Handler, ValueChangeHandler<String>{
+public class BreadCrumb extends Composite {
 
 	
 	// ui binder tag interface
@@ -34,110 +34,10 @@ public class BreadCrumb extends Composite implements LoginEvent.Handler, ValueCh
 	// the ui binder builder
 	private static BreadCrumbUiBinder uiBinder = GWT.create(BreadCrumbUiBinder.class);
 
-	
-	// maintain the lastest person connected
-	Person connectedUser ;
-	
-	
-	@UiField
-	DivElement username;
-	
-	@UiField
-	Hyperlink logout;
-	
-	@UiField
-	BreadCrumbMessages messages;
-	
-	/**
-	 * Timer use for deconnection
-	 */
-	Timer timer ;
-
 	/**
 	 * Default constructor for the breadcrumb UI element
 	 */
 	public BreadCrumb() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-		// register for LoginEvent.Event that are fired on application event bus
-		IPlus.getEventbus().addHandler(LoginEvent.Event.TYPE, this);
-		
-		// register for History token changes
-		History.addValueChangeHandler(this);
-		
-		timer = new Timer() {
-			@Override
-			public void run() {
-				checkIsConnected();
-			}
-		};
 	}
-
-	/**
-	 * Trigger when a {@link LoginEvent.Event} is fired on global event bus
-	 */
-	@Override
-	public void onLogin(LoginEvent.Event event) {
-		if (event.getPerson() != null && event.getAction() == LoginEvent.Event.Action.CONNECTION_SUCCESSFULLY ) {
-			login(event.getPerson());
-		}
-	}
-
-
-	/**
-	 * log user out
-	 */
-	private void logout() {
-		timer.cancel();
-		connectedUser = null;
-		username.setInnerText("");
-		History.newItem(HistoryToken.TOK_LOGIN);
-	}
-	
-	/**
-	 * log user in
-	 */
-	private void login(Person connectedUser) {
-		GWT.log(connectedUser.toString());
-
-		if (connectedUser != null) {
-			this.connectedUser = connectedUser;
-			username.setInnerText(messages.connectedUser(connectedUser.getFirstName()));
-		}
-	}
-	
-	
-	
-	/**
-	 * Check if the user is already connected or not
-	 */
-	private void checkIsConnected() {
-		
-		ServicesFactory.getLoginServices().isConnected(new AsyncCallback<Person>() {
-			
-			@Override
-			public void onSuccess(Person result) {
-				GWT.log("check is connected " +result.toString());
-				login(result);
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				logout();
-			}
-		});
-	}
-
-	
-	/**
-	 * Trigger when history token change
-	 */
-	@Override
-	public void onValueChange(ValueChangeEvent<String> event) {
-		if( event.getValue().startsWith("/mainspace")) {
-			timer.scheduleRepeating(3000);
-		}
-	}
-		
-	
 }
